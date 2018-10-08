@@ -1,0 +1,8 @@
+app_identifier("com.Justin.TrackerBot") # The bundle identifier of your app
+apple_id("jsw104@case.edu") # Your Apple email address
+
+itc_team_id("118247756") # App Store Connect Team ID
+team_id("C5ARGCT28E") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
