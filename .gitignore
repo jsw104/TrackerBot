@@ -1,4 +1,3 @@
-		run_tests(scheme: "TrackerBotUITests")
 Pods/
 TrackerBot.xcworkspace
 TrackerBot.xcodeproj

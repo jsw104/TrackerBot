@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='TrackerBotTests.xctest' tests='2' failures='1'>
+  <testsuite name='TrackerBotTests.TrackerBotTests' tests='2' failures='1'>
+    <testcase classname='TrackerBotTests.TrackerBotTests' name='testExample'>
+      <failure message='expected to equal &lt;3&gt;, got &lt;2&gt;'>/Users/justin/Documents/TrackerBot/TrackerBotTests/TrackerBotTests.swift:28</failure>
+    </testcase>
+    <testcase classname='TrackerBotTests.TrackerBotTests' name='testPerformanceExample' time='0.418'/>
+  </testsuite>
+</testsuites>

@@ -22,6 +22,7 @@ platform :ios do
     upload_to_testflight
   end
 	lane :tests do
+		build_app(scheme: "TrackerBot")
   	run_tests(scheme: "TrackerBotTests")
 		run_tests(scheme: "TrackerBotUITests")
 	end
