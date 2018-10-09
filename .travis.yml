@@ -1,5 +1,5 @@
 osx_image: xcode10
 language: swift
-script:
+scripts:
   - fastlane tests
 	- fastlane beta
