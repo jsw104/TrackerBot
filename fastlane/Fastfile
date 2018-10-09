@@ -19,6 +19,7 @@ platform :ios do
 	xcversion(version: "10.0")
   desc "Push a new beta build to TestFlight"
   lane :beta do
+		tests
     build_app(scheme: "TrackerBot")
     upload_to_testflight
   end
