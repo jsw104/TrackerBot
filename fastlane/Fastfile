@@ -18,7 +18,7 @@ default_platform(:ios)
 platform :ios do
 	xcversion(version: "10.0")
   desc "Push a new beta build to TestFlight"
-  lane :beta do
+  lane :tests do
   	run_tests(scheme: "TrackerBotTests")
 		run_tests(scheme: "TrackerBotUITests")
     build_app(scheme: "TrackerBot")

@@ -1,4 +1,4 @@
 osx_image: xcode10
 language: swift
 script:
-	- fastlane beta
+  - fastlane tests
