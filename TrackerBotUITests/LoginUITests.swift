@@ -8,7 +8,8 @@
 
 import XCTest
 
-class TrackerBotUITests: XCTestCase {
+class LoginUITests: XCTestCase {
+    var app: XCUIApplication!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -17,18 +18,26 @@ class TrackerBotUITests: XCTestCase {
         continueAfterFailure = false
 
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
+        
+        // We send a command line argument to our app,
+        // to enable it to reset its state
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testLoginFormIsDisplayedOnLaunch() {
+        app.launch()
+        let emailField = app.textFields["emailField"]
+        let passwordField = app.textFields["passwordField"]
+        let loginButton = app.buttons["loginButton"]
+        
+        // Onboarding should no longer be displayed
+        XCTAssertTrue(emailField.exists)
+        XCTAssertTrue(passwordField.exists)
+        XCTAssertTrue(loginButton.exists)
     }
 
 }

@@ -16,7 +16,7 @@
 		D09260D4215C4A5E00F2C136 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D09260D3215C4A5E00F2C136 /* Assets.xcassets */; };
 		D09260D7215C4A5E00F2C136 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09260D5215C4A5E00F2C136 /* LaunchScreen.storyboard */; };
 		D09260E2215C4A5E00F2C136 /* TrackerBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09260E1215C4A5E00F2C136 /* TrackerBotTests.swift */; };
-		D0B426B1216D067100A1589C /* TrackerBotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B426B0216D067100A1589C /* TrackerBotUITests.swift */; };
+		D0B426B1216D067100A1589C /* LoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B426B0216D067100A1589C /* LoginUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +68,7 @@
 		D09260E3215C4A5E00F2C136 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D09260EC215C4DA500F2C136 /* TrackerBot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrackerBot.entitlements; sourceTree = "<group>"; };
 		D0B426AE216D067100A1589C /* TrackerBotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackerBotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0B426B0216D067100A1589C /* TrackerBotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerBotUITests.swift; sourceTree = "<group>"; };
+		D0B426B0216D067100A1589C /* LoginUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUITests.swift; sourceTree = "<group>"; };
 		D0B426B2216D067100A1589C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC944B7991075107F0F63A82 /* Pods-TrackerBotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackerBotTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackerBotTests/Pods-TrackerBotTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,7 +160,7 @@
 		D0B426AF216D067100A1589C /* TrackerBotUITests */ = {
 			isa = PBXGroup;
 			children = (
-				D0B426B0216D067100A1589C /* TrackerBotUITests.swift */,
+				D0B426B0216D067100A1589C /* LoginUITests.swift */,
 				D0B426B2216D067100A1589C /* Info.plist */,
 			);
 			path = TrackerBotUITests;
@@ -459,7 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0B426B1216D067100A1589C /* TrackerBotUITests.swift in Sources */,
+				D0B426B1216D067100A1589C /* LoginUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
