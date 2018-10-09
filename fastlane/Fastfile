@@ -23,5 +23,6 @@ platform :ios do
   end
 	lane :tests do
   	run_tests(scheme: "TrackerBotTests")
+		run_tests(scheme: "TrackerBotUITests")
 	end
 end
