@@ -6,6 +6,7 @@
 //  Copyright © 2018 Justin. All rights reserved.
 //
 
+import Nimble
 import XCTest
 @testable import TrackerBot
 
@@ -24,6 +25,7 @@ class TrackerBotTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        expect(1 + 1).to(equal(3))
     }
     
     func testPerformanceExample() {
