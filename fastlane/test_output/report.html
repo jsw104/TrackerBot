@@ -112,8 +112,6 @@
         <section id="counters">
           <h2 id="test-count"><span class="number">2</span> tests</h2>
           
-            <h2 id="fail-count"><span class="number">1</span> failures</h2>
-          
         </section>
         <section id="segment-bar">
           <a id="all-segment" onclick="selectSegment(this);" class="selected">All</a><a id="failing-segment" onclick="selectSegment(this);">Failing</a><a id="passing-segment" onclick="selectSegment(this);">Passing</a>
@@ -123,7 +121,7 @@
     <section id="test-suites">
       
         
-        <section class="test-suite failing" id="TrackerBotTests.TrackerBotTests">
+        <section class="test-suite passing" id="TrackerBotTests.TrackerBotTests">
           <section class="heading" onclick="toggleTests(this);">
             <h3 class="title">TrackerBotTests.TrackerBotTests</h3>
           </section>
@@ -131,36 +129,21 @@
             <table>
             
               
-              <tr class="test failing "  onclick="toggleDetails('testExample');">
+              <tr class="test passing "  onclick="toggleDetails('testExample');">
                 <td>
+                  
+                    <h3 class="time">0.023s</h3>
                   
                 </td>
                 <td><h3 class="title">testExample</h3></td>
               </tr>
-              
-                <tr class="details failing testExample">
-                  <td></td>
-                  <td>
-                    
-                      <section class="test-detail reason">expected to equal <3>, got <2></section>
-                    
-                    
-                      <section class="test-detail snippet">        <span class="c1">// Use XCTAssert and related functions to verify your tests produce the correct results.</span>
-        <span class="nf">expect</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="nf">to</span><span class="p">(</span><span class="nf">equal</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-    <span class="p">}</span>
-</section>
-                      <section class="test-detail">/Users/justin/Documents/TrackerBot/TrackerBotTests/TrackerBotTests.swift:28</section>
-                    
-                    
-                  </td>
-                </tr>
               
             
               
               <tr class="test passing odd"  onclick="toggleDetails('testPerformanceExample');">
                 <td>
                   
-                    <h3 class="time">0.418s</h3>
+                    <h3 class="time">0.390s</h3>
                   
                 </td>
                 <td><h3 class="title">testPerformanceExample</h3></td>

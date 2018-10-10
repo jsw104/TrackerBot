@@ -10,12 +10,13 @@
 		3B64A5C4EC37FE8CEF75DA7A /* Pods_TrackerBot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EEA5F1829A707AB508F307E /* Pods_TrackerBot.framework */; };
 		5CC7EF25C2EB8A6C4E8E400B /* Pods_TrackerBotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4611CB08A71B22E4A9346AE /* Pods_TrackerBotTests.framework */; };
 		D09260CA215C4A5E00F2C136 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09260C9215C4A5E00F2C136 /* AppDelegate.swift */; };
-		D09260CC215C4A5E00F2C136 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09260CB215C4A5E00F2C136 /* ViewController.swift */; };
+		D09260CC215C4A5E00F2C136 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09260CB215C4A5E00F2C136 /* LoginViewController.swift */; };
 		D09260CF215C4A5E00F2C136 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09260CD215C4A5E00F2C136 /* Main.storyboard */; };
 		D09260D2215C4A5E00F2C136 /* TrackerBot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D09260D0215C4A5E00F2C136 /* TrackerBot.xcdatamodeld */; };
 		D09260D4215C4A5E00F2C136 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D09260D3215C4A5E00F2C136 /* Assets.xcassets */; };
 		D09260D7215C4A5E00F2C136 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09260D5215C4A5E00F2C136 /* LaunchScreen.storyboard */; };
 		D09260E2215C4A5E00F2C136 /* TrackerBotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09260E1215C4A5E00F2C136 /* TrackerBotTests.swift */; };
+		D0A323AD216E5A2100DC049E /* TrackerBotButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A323AC216E5A2100DC049E /* TrackerBotButton.swift */; };
 		D0B426B1216D067100A1589C /* LoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B426B0216D067100A1589C /* LoginUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +58,7 @@
 		B4611CB08A71B22E4A9346AE /* Pods_TrackerBotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackerBotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09260C6215C4A5E00F2C136 /* TrackerBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackerBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09260C9215C4A5E00F2C136 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D09260CB215C4A5E00F2C136 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D09260CB215C4A5E00F2C136 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D09260CE215C4A5E00F2C136 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D09260D1215C4A5E00F2C136 /* TrackerBot.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TrackerBot.xcdatamodel; sourceTree = "<group>"; };
 		D09260D3215C4A5E00F2C136 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		D09260E1215C4A5E00F2C136 /* TrackerBotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerBotTests.swift; sourceTree = "<group>"; };
 		D09260E3215C4A5E00F2C136 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D09260EC215C4DA500F2C136 /* TrackerBot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrackerBot.entitlements; sourceTree = "<group>"; };
+		D0A323AC216E5A2100DC049E /* TrackerBotButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerBotButton.swift; sourceTree = "<group>"; };
 		D0B426AE216D067100A1589C /* TrackerBotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackerBotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B426B0216D067100A1589C /* LoginUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUITests.swift; sourceTree = "<group>"; };
 		D0B426B2216D067100A1589C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,12 +140,13 @@
 			children = (
 				D09260EC215C4DA500F2C136 /* TrackerBot.entitlements */,
 				D09260C9215C4A5E00F2C136 /* AppDelegate.swift */,
-				D09260CB215C4A5E00F2C136 /* ViewController.swift */,
+				D09260CB215C4A5E00F2C136 /* LoginViewController.swift */,
 				D09260CD215C4A5E00F2C136 /* Main.storyboard */,
 				D09260D3215C4A5E00F2C136 /* Assets.xcassets */,
 				D09260D5215C4A5E00F2C136 /* LaunchScreen.storyboard */,
 				D09260D8215C4A5E00F2C136 /* Info.plist */,
 				D09260D0215C4A5E00F2C136 /* TrackerBot.xcdatamodeld */,
+				D0A323AC216E5A2100DC049E /* TrackerBotButton.swift */,
 			);
 			path = TrackerBot;
 			sourceTree = "<group>";
@@ -441,8 +444,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D09260CC215C4A5E00F2C136 /* ViewController.swift in Sources */,
+				D09260CC215C4A5E00F2C136 /* LoginViewController.swift in Sources */,
 				D09260D2215C4A5E00F2C136 /* TrackerBot.xcdatamodeld in Sources */,
+				D0A323AD216E5A2100DC049E /* TrackerBotButton.swift in Sources */,
 				D09260CA215C4A5E00F2C136 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
