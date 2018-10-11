@@ -39,5 +39,4 @@ class LoginUITests: XCTestCase {
         XCTAssertTrue(passwordField.exists)
         XCTAssertTrue(loginButton.exists)
     }
-
 }
