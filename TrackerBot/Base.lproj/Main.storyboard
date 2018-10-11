@@ -22,45 +22,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3t-35-hP4">
-                                <rect key="frame" x="37.5" y="299" width="300" height="48"/>
+                                <rect key="frame" x="37.5" y="299" width="300" height="36"/>
                                 <accessibility key="accessibilityConfiguration" identifier="emailField"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="HaS-M9-BwK"/>
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HLb-Nk-WIo" userLabel="separator">
-                                <rect key="frame" x="37.5" y="355" width="300" height="1"/>
+                                <rect key="frame" x="37.5" y="351" width="180" height="1"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="lV0-qS-0Ul"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nuf-hU-7uN">
-                                <rect key="frame" x="37.5" y="364" width="300" height="48"/>
+                                <rect key="frame" x="37.5" y="368" width="300" height="36"/>
                                 <accessibility key="accessibilityConfiguration" identifier="passwordField"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="vWv-E3-koc"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7K9-qy-QV8" customClass="WYMaterialButton" customModule="WYMaterialButton">
-                                <rect key="frame" x="37.5" y="452" width="300" height="60"/>
+                                <rect key="frame" x="37.5" y="444" width="300" height="60"/>
                                 <accessibility key="accessibilityConfiguration" identifier="loginButton"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <state key="normal" title="Login">
-                                    <color key="titleColor" red="0.32941176470588235" green="0.51372549019607838" blue="0.68235294117647061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="materialColor">
-                                        <color key="value" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -79,17 +82,17 @@
                         <constraints>
                             <constraint firstItem="7K9-qy-QV8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9PG-Ph-ZAS"/>
                             <constraint firstItem="7K9-qy-QV8" firstAttribute="top" secondItem="nuf-hU-7uN" secondAttribute="bottom" constant="40" id="D2U-Gm-ZF1"/>
-                            <constraint firstItem="HLb-Nk-WIo" firstAttribute="bottom" secondItem="nuf-hU-7uN" secondAttribute="top" constant="-8" id="EWb-tH-2Z2"/>
-                            <constraint firstItem="HLb-Nk-WIo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q4B-77-PRv"/>
+                            <constraint firstItem="HLb-Nk-WIo" firstAttribute="bottom" secondItem="nuf-hU-7uN" secondAttribute="top" constant="-16" id="EWb-tH-2Z2"/>
+                            <constraint firstItem="HLb-Nk-WIo" firstAttribute="leading" secondItem="T3t-35-hP4" secondAttribute="leading" id="FBo-a6-ci8"/>
                             <constraint firstItem="nuf-hU-7uN" firstAttribute="width" secondItem="T3t-35-hP4" secondAttribute="width" id="SWx-Oo-ZSf"/>
                             <constraint firstItem="T3t-35-hP4" firstAttribute="top" secondItem="cuK-fm-gfd" secondAttribute="bottom" constant="40" id="Wbb-OR-ERn"/>
                             <constraint firstItem="nuf-hU-7uN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bWN-18-2XF"/>
                             <constraint firstItem="T3t-35-hP4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cMf-7J-bxU"/>
                             <constraint firstItem="cuK-fm-gfd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d6S-ez-SX8"/>
                             <constraint firstItem="T3t-35-hP4" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="jSi-cD-iUv"/>
-                            <constraint firstItem="HLb-Nk-WIo" firstAttribute="width" secondItem="T3t-35-hP4" secondAttribute="width" id="jwP-Da-Vyz"/>
+                            <constraint firstItem="HLb-Nk-WIo" firstAttribute="width" secondItem="T3t-35-hP4" secondAttribute="width" multiplier="0.6" id="jwP-Da-Vyz"/>
                             <constraint firstItem="cuK-fm-gfd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="24" id="oLt-cS-jA0"/>
-                            <constraint firstItem="HLb-Nk-WIo" firstAttribute="top" secondItem="T3t-35-hP4" secondAttribute="bottom" constant="8" id="taU-Aq-Vee"/>
+                            <constraint firstItem="HLb-Nk-WIo" firstAttribute="top" secondItem="T3t-35-hP4" secondAttribute="bottom" constant="16" id="taU-Aq-Vee"/>
                             <constraint firstItem="7K9-qy-QV8" firstAttribute="width" secondItem="nuf-hU-7uN" secondAttribute="width" id="z1W-29-5T8"/>
                         </constraints>
                     </view>

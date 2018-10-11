@@ -40,12 +40,12 @@ class LoginServiceHandler: LoginService {
         let url: URL = URL(string: urlString)!
         var request: URLRequest = URLRequest(url: url)
         request.httpMethod = "GET"
-        request.setValue(base64encodedAuthCredentials, forHTTPHeaderField: "Authorization")
-        request.setValue("Yes", forHTTPHeaderField: "X-Tracker-Use-UTC")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue(base64encodedAuthCredentials, forHTTPHeaderField: "Authorization")
+        request.addValue("Yes", forHTTPHeaderField: "X-Tracker-Use-UTC")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         let appVersion: String = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
-        request.setValue("iOS " + appVersion, forHTTPHeaderField: "X-Tracker-Client")
-        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+        request.addValue("iOS " + appVersion, forHTTPHeaderField: "X-Tracker-Client")
+        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             guard let data = data else { return }
             print(String(data: data, encoding: .utf8)!)
         }
