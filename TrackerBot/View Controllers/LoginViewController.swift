@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var emailField : UITextField!
     @IBOutlet var passwordField : UITextField!
     var loginService: LoginService!
+    var keyboardIsUp: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tap)
     }
     
+    override func viewDidDisappear(_ animated: Bool)
+    {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
     func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -34,17 +42,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func keyboardWillShow(notification: NSNotification) {
+        if keyboardIsUp == true { return }
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if(shouldMoveKeyboard(keyboardHeight: keyboardSize.height)) {
                 self.view.frame.origin.y -= keyboardSize.height
+                keyboardIsUp = true
             }
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
+        if keyboardIsUp == false { return }
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if(shouldMoveKeyboard(keyboardHeight: keyboardSize.height)) {
                 self.view.frame.origin.y += keyboardSize.height
+                keyboardIsUp = false
             }
         }
     }
@@ -67,11 +79,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension LoginViewController: LoginServiceDelegate {
-    func loginSuccessfull(withUser user: String) {
-        print(user)
+    func loginSuccessfull(withUser user: User) {
+        self.emailField.text = ""
+        self.passwordField.text = ""
+        let botViewController: BotViewController = BotViewController(user: user)
+        present(botViewController, animated: true, completion: nil)
     }
     
     func handle(error: String) {
-        print(error)
+        dismissKeyboard()
+        let alert = UIAlertController(title: "Authentication Error.", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }

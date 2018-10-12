@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3B64A5C4EC37FE8CEF75DA7A /* Pods_TrackerBot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EEA5F1829A707AB508F307E /* Pods_TrackerBot.framework */; };
 		5CC7EF25C2EB8A6C4E8E400B /* Pods_TrackerBotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4611CB08A71B22E4A9346AE /* Pods_TrackerBotTests.framework */; };
+		D04C5D4F2170F81C00446DA7 /* TrackerBotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C5D4E2170F81B00446DA7 /* TrackerBotService.swift */; };
+		D04C5D512170F89B00446DA7 /* ThoughtBubbleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C5D502170F89B00446DA7 /* ThoughtBubbleButton.swift */; };
 		D09260CA215C4A5E00F2C136 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09260C9215C4A5E00F2C136 /* AppDelegate.swift */; };
 		D09260CC215C4A5E00F2C136 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09260CB215C4A5E00F2C136 /* LoginViewController.swift */; };
 		D09260CF215C4A5E00F2C136 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09260CD215C4A5E00F2C136 /* Main.storyboard */; };
@@ -20,6 +22,7 @@
 		D0A323B7216E8FB900DC049E /* LoginServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A323B6216E8FB900DC049E /* LoginServiceTests.swift */; };
 		D0A323B9216E97C500DC049E /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A323B8216E97C500DC049E /* LoginViewControllerTests.swift */; };
 		D0B426B1216D067100A1589C /* LoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B426B0216D067100A1589C /* LoginUITests.swift */; };
+		D0BFD33B216FFC1900FB331B /* BotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BFD33A216FFC1900FB331B /* BotViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,8 @@
 		25C5993DC22681E6DB1AA0CC /* Pods-TrackerBotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackerBotTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrackerBotTests/Pods-TrackerBotTests.debug.xcconfig"; sourceTree = "<group>"; };
 		573B1833D428BB8E0613CE6A /* Pods-TrackerBot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackerBot.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackerBot/Pods-TrackerBot.release.xcconfig"; sourceTree = "<group>"; };
 		B4611CB08A71B22E4A9346AE /* Pods_TrackerBotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackerBotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D04C5D4E2170F81B00446DA7 /* TrackerBotService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerBotService.swift; sourceTree = "<group>"; };
+		D04C5D502170F89B00446DA7 /* ThoughtBubbleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtBubbleButton.swift; sourceTree = "<group>"; };
 		D09260C6215C4A5E00F2C136 /* TrackerBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackerBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09260C9215C4A5E00F2C136 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D09260CB215C4A5E00F2C136 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +81,7 @@
 		D0B426AE216D067100A1589C /* TrackerBotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackerBotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B426B0216D067100A1589C /* LoginUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUITests.swift; sourceTree = "<group>"; };
 		D0B426B2216D067100A1589C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0BFD33A216FFC1900FB331B /* BotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotViewController.swift; sourceTree = "<group>"; };
 		EC944B7991075107F0F63A82 /* Pods-TrackerBotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackerBotTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackerBotTests/Pods-TrackerBotTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +123,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D04C5D4D2170F7EF00446DA7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D0A323B4216E8F9700DC049E /* LoginService.swift */,
+				D04C5D4E2170F81B00446DA7 /* TrackerBotService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		D09260BD215C4A5E00F2C136 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +157,7 @@
 		D09260C8215C4A5E00F2C136 /* TrackerBot */ = {
 			isa = PBXGroup;
 			children = (
+				D04C5D4D2170F7EF00446DA7 /* Services */,
 				D0A323AF216E6AEC00DC049E /* Buttons */,
 				D0A323AE216E6AC300DC049E /* View Controllers */,
 				D09260EC215C4DA500F2C136 /* TrackerBot.entitlements */,
@@ -151,7 +167,6 @@
 				D09260D5215C4A5E00F2C136 /* LaunchScreen.storyboard */,
 				D09260D8215C4A5E00F2C136 /* Info.plist */,
 				D09260D0215C4A5E00F2C136 /* TrackerBot.xcdatamodeld */,
-				D0A323B4216E8F9700DC049E /* LoginService.swift */,
 			);
 			path = TrackerBot;
 			sourceTree = "<group>";
@@ -170,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				D09260CB215C4A5E00F2C136 /* LoginViewController.swift */,
+				D0BFD33A216FFC1900FB331B /* BotViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -178,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				D0A323AC216E5A2100DC049E /* TrackerBotButton.swift */,
+				D04C5D502170F89B00446DA7 /* ThoughtBubbleButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -468,9 +485,12 @@
 			files = (
 				D09260CC215C4A5E00F2C136 /* LoginViewController.swift in Sources */,
 				D09260D2215C4A5E00F2C136 /* TrackerBot.xcdatamodeld in Sources */,
+				D0BFD33B216FFC1900FB331B /* BotViewController.swift in Sources */,
+				D04C5D4F2170F81C00446DA7 /* TrackerBotService.swift in Sources */,
 				D0A323AD216E5A2100DC049E /* TrackerBotButton.swift in Sources */,
 				D09260CA215C4A5E00F2C136 /* AppDelegate.swift in Sources */,
 				D0A323B5216E8F9700DC049E /* LoginService.swift in Sources */,
+				D04C5D512170F89B00446DA7 /* ThoughtBubbleButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

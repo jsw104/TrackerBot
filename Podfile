@@ -7,6 +7,7 @@ target 'TrackerBot' do
   use_frameworks!
   # Pods for TrackerBot
 	pod 'WYMaterialButton'
+	pod 'SnapKit', '~> 3.0.0'
 
   target 'TrackerBotTests' do
     inherit! :search_paths

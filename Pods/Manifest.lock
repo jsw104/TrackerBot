@@ -1,18 +1,21 @@
 PODS:
   - Nimble (7.0.3)
-  - pop (1.0.10)
+  - pop (1.0.12)
+  - SnapKit (3.0.2)
   - WYMaterialButton (2.0.2):
     - pop (~> 1.0)
 
 DEPENDENCIES:
   - Nimble (~> 7.0.2)
+  - SnapKit (~> 3.0.0)
   - WYMaterialButton
 
 SPEC CHECKSUMS:
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
-  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   WYMaterialButton: e7834149d5a8e073ea4424162c2e7c922b7a25c0
 
-PODFILE CHECKSUM: 18b090db7af25615d2ec37f90e7e8432009a17c2
+PODFILE CHECKSUM: 62d0498f3ec9b6b5eba4cb4d13734ce71c54b136
 
 COCOAPODS: 1.2.0

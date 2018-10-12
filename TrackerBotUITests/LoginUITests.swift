@@ -7,6 +7,19 @@
 //
 
 import XCTest
+@testable import TrackerBot
+
+class FakeSuccessLoginServiceHandler: LoginServiceHandler {
+    override func login(email: String!, password: String!) {
+        delegate.handle(error: "Failed to authenticate. Try different credentials.")
+    }
+}
+
+class FakeFailureLoginServiceHandler: LoginServiceHandler {
+    override func login(email: String!, password: String!) {
+        delegate.loginSuccessfull(withUser: "test user")
+    }
+}
 
 class LoginUITests: XCTestCase {
     var app: XCUIApplication!
@@ -34,10 +47,10 @@ class LoginUITests: XCTestCase {
         let emailField = app.textFields["emailField"]
         let passwordField = app.textFields["passwordField"]
         let loginButton = app.buttons["loginButton"]
-        
-        // Onboarding should no longer be displayed
+
         XCTAssertTrue(emailField.exists)
         XCTAssertTrue(passwordField.exists)
         XCTAssertTrue(loginButton.exists)
     }
+    
 }

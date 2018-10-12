@@ -16,8 +16,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let user: User? = self.userForUserId(userId: UserDefaults.standard.value(forKey: "currentUserId") as? Int)
+        if (user != nil) {
+            bypassLogin(user: user!)
+        }
         return true
+    }
+    
+    func bypassLogin(user: User) {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let botViewController: BotViewController = BotViewController(user:user)
+        self.window?.rootViewController = botViewController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func userForUserId(userId: Int?) -> User?{
+        if(userId != nil) {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+            request.predicate = NSPredicate(format: "id = %d", userId!)
+            request.returnsObjectsAsFaults = false
+            do {
+                let result = try context.fetch(request)
+                if(result.count == 1) {
+                    return (result[0] as! User)
+                }
+            } catch {
+                UserDefaults.standard.removeObject(forKey: "currentUserId")
+            }
+        }
+        return nil
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol LoginService {
     var delegate: LoginServiceDelegate { get }
@@ -16,7 +17,7 @@ protocol LoginService {
 // Delegate for the LoginService
 protocol LoginServiceDelegate {
     
-    func loginSuccessfull(withUser user: String)
+    func loginSuccessfull(withUser user: User)
     
     func handle(error: String)
 }
@@ -48,10 +49,47 @@ class LoginServiceHandler: LoginService {
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             guard let data = data else { return }
             print(String(data: data, encoding: .utf8)!)
+            var json:Dictionary<String, Any>? = Dictionary()
+            do {
+                json = try (JSONSerialization.jsonObject(with: data, options: []) as? Dictionary<String, Any>)
+            } catch {
+                DispatchQueue.main.async {
+                    self.delegate.handle(error: "error parsing json")
+                }
+            }
+            if(json?["error"] != nil) {
+                DispatchQueue.main.async {
+                    self.delegate.handle(error: json!["error"]! as! String)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.delegate.loginSuccessfull(withUser: self.saveJSONToCoreData(json: json!))
+                }
+            }
         }
         
         task.resume()
-        delegate.loginSuccessfull(withUser: "user")
     }
+    
+    func saveJSONToCoreData(json:Dictionary<String, Any>) -> User {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "User", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        newUser.setValue(json["username"], forKey: "username")
+        newUser.setValue(json["api_token"], forKey: "apiToken")
+        newUser.setValue(json["id"], forKey: "id")
+        newUser.setValue(json["name"], forKey: "name")
+        newUser.setValue(json["email"], forKey: "email")
+        do {
+            try context.save()
+            UserDefaults.standard.set(newUser.value(forKey: "id"), forKey: "currentUserId")
+        } catch {
+            print("Failed saving")
+        }
+        return newUser as! User
+    }
+    
 }
+
 
