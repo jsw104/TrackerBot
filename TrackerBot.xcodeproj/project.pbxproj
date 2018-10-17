@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		3B64A5C4EC37FE8CEF75DA7A /* Pods_TrackerBot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EEA5F1829A707AB508F307E /* Pods_TrackerBot.framework */; };
 		5CC7EF25C2EB8A6C4E8E400B /* Pods_TrackerBotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4611CB08A71B22E4A9346AE /* Pods_TrackerBotTests.framework */; };
+		D0013BB62174FD020042881B /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0013BB52174FD020042881B /* Story.swift */; };
+		D0013BB8217502990042881B /* StoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0013BB7217502990042881B /* StoriesTableViewController.swift */; };
+		D0013BBC21750C300042881B /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0013BBA21750C300042881B /* StoryTableViewCell.swift */; };
+		D0013BBD21750C300042881B /* StoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0013BBB21750C300042881B /* StoryTableViewCell.xib */; };
+		D0013BBF21753A080042881B /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0013BBE21753A080042881B /* PasswordViewController.swift */; };
 		D04C5D4F2170F81C00446DA7 /* TrackerBotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C5D4E2170F81B00446DA7 /* TrackerBotService.swift */; };
 		D04C5D512170F89B00446DA7 /* ThoughtBubbleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C5D502170F89B00446DA7 /* ThoughtBubbleButton.swift */; };
 		D09260CA215C4A5E00F2C136 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09260C9215C4A5E00F2C136 /* AppDelegate.swift */; };
@@ -61,6 +66,11 @@
 		25C5993DC22681E6DB1AA0CC /* Pods-TrackerBotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackerBotTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrackerBotTests/Pods-TrackerBotTests.debug.xcconfig"; sourceTree = "<group>"; };
 		573B1833D428BB8E0613CE6A /* Pods-TrackerBot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackerBot.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackerBot/Pods-TrackerBot.release.xcconfig"; sourceTree = "<group>"; };
 		B4611CB08A71B22E4A9346AE /* Pods_TrackerBotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackerBotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0013BB52174FD020042881B /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		D0013BB7217502990042881B /* StoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesTableViewController.swift; sourceTree = "<group>"; };
+		D0013BBA21750C300042881B /* StoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
+		D0013BBB21750C300042881B /* StoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryTableViewCell.xib; sourceTree = "<group>"; };
+		D0013BBE21753A080042881B /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		D04C5D4E2170F81B00446DA7 /* TrackerBotService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerBotService.swift; sourceTree = "<group>"; };
 		D04C5D502170F89B00446DA7 /* ThoughtBubbleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtBubbleButton.swift; sourceTree = "<group>"; };
 		D09260C6215C4A5E00F2C136 /* TrackerBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackerBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +133,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D0013BB42174FCEA0042881B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D0013BB52174FD020042881B /* Story.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D0013BB921750C090042881B /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D0013BBA21750C300042881B /* StoryTableViewCell.swift */,
+				D0013BBB21750C300042881B /* StoryTableViewCell.xib */,
+			);
+			path = "Table View Cells";
+			sourceTree = "<group>";
+		};
 		D04C5D4D2170F7EF00446DA7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +184,8 @@
 		D09260C8215C4A5E00F2C136 /* TrackerBot */ = {
 			isa = PBXGroup;
 			children = (
+				D0013BB921750C090042881B /* Table View Cells */,
+				D0013BB42174FCEA0042881B /* Models */,
 				D04C5D4D2170F7EF00446DA7 /* Services */,
 				D0A323AF216E6AEC00DC049E /* Buttons */,
 				D0A323AE216E6AC300DC049E /* View Controllers */,
@@ -186,6 +215,8 @@
 			children = (
 				D09260CB215C4A5E00F2C136 /* LoginViewController.swift */,
 				D0BFD33A216FFC1900FB331B /* BotViewController.swift */,
+				D0013BB7217502990042881B /* StoriesTableViewController.swift */,
+				D0013BBE21753A080042881B /* PasswordViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -342,6 +373,7 @@
 				D09260D7215C4A5E00F2C136 /* LaunchScreen.storyboard in Resources */,
 				D09260D4215C4A5E00F2C136 /* Assets.xcassets in Resources */,
 				D09260CF215C4A5E00F2C136 /* Main.storyboard in Resources */,
+				D0013BBD21750C300042881B /* StoryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,12 +517,16 @@
 			files = (
 				D09260CC215C4A5E00F2C136 /* LoginViewController.swift in Sources */,
 				D09260D2215C4A5E00F2C136 /* TrackerBot.xcdatamodeld in Sources */,
+				D0013BB8217502990042881B /* StoriesTableViewController.swift in Sources */,
+				D0013BBC21750C300042881B /* StoryTableViewCell.swift in Sources */,
 				D0BFD33B216FFC1900FB331B /* BotViewController.swift in Sources */,
+				D0013BBF21753A080042881B /* PasswordViewController.swift in Sources */,
 				D04C5D4F2170F81C00446DA7 /* TrackerBotService.swift in Sources */,
 				D0A323AD216E5A2100DC049E /* TrackerBotButton.swift in Sources */,
 				D09260CA215C4A5E00F2C136 /* AppDelegate.swift in Sources */,
 				D0A323B5216E8F9700DC049E /* LoginService.swift in Sources */,
 				D04C5D512170F89B00446DA7 /* ThoughtBubbleButton.swift in Sources */,
+				D0013BB62174FD020042881B /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

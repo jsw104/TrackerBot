@@ -13,21 +13,39 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let user: User? = self.userForUserId(userId: UserDefaults.standard.value(forKey: "currentUserId") as? Int)
-        if (user != nil) {
-            bypassLogin(user: user!)
+        let project: Project? = self.projectForProjectId(projectId: UserDefaults.standard.value(forKey: "currentProjectId") as? Int)
+        if (user != nil && project != nil) {
+            bypassLogin(user: user!, project: project!)
         }
         return true
     }
     
-    func bypassLogin(user: User) {
+    func bypassLogin(user: User, project: Project) {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let botViewController: BotViewController = BotViewController(user:user)
+        let botViewController: BotViewController = BotViewController(user:user, project: project)
         self.window?.rootViewController = botViewController
         self.window?.makeKeyAndVisible()
+    }
+    
+    func projectForProjectId(projectId: Int?) -> Project? {
+        if(projectId != nil) {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
+            request.predicate = NSPredicate(format: "id = %d", projectId!)
+            request.returnsObjectsAsFaults = false
+            do {
+                let result = try context.fetch(request)
+                if(result.count == 1) {
+                    return (result[0] as! Project)
+                }
+            } catch {
+                UserDefaults.standard.removeObject(forKey: "currentProjectId")
+            }
+        }
+        return nil
     }
     
     func userForUserId(userId: Int?) -> User?{

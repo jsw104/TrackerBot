@@ -1,4 +1,5 @@
 PODS:
+  - DeckTransition (1.3.4)
   - Nimble (7.0.3)
   - pop (1.0.12)
   - SnapKit (3.0.2)
@@ -6,16 +7,18 @@ PODS:
     - pop (~> 1.0)
 
 DEPENDENCIES:
+  - DeckTransition (~> 1.3.4)
   - Nimble (~> 7.0.2)
   - SnapKit (~> 3.0.0)
   - WYMaterialButton
 
 SPEC CHECKSUMS:
+  DeckTransition: 720908febb6a09d1b4e084d4b8f99f743383ca33
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   WYMaterialButton: e7834149d5a8e073ea4424162c2e7c922b7a25c0
 
-PODFILE CHECKSUM: 62d0498f3ec9b6b5eba4cb4d13734ce71c54b136
+PODFILE CHECKSUM: 9c7eedd8fb393a23ff1f8cd5544485938ea6e251
 
 COCOAPODS: 1.2.0
