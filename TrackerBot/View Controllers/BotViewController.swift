@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import DeckTransition
+import SideMenu
 
 class Position: NSObject {
     var x: Float
@@ -41,6 +42,7 @@ class BotViewController: UIViewController {
     let yesterdayWorkButton: ThoughtBubbleButton
     let todayWorkButton: ThoughtBubbleButton
     let flashUpdateButton: ThoughtBubbleButton
+    let openSideMenuButton: UIButton
     
     init (user: User, project: Project) {
         self.user = user
@@ -50,7 +52,10 @@ class BotViewController: UIViewController {
         self.todayWorkButton = ThoughtBubbleButton(bubbleType: ThoughtBubbleButton.BubbleType.TodayWork)
         self.flashUpdateButton = ThoughtBubbleButton(bubbleType: ThoughtBubbleButton.BubbleType.FlashUpdate)
         self.thoughtButtons = [yesterdayWorkButton, todayWorkButton, flashUpdateButton]
+        self.openSideMenuButton = UIButton()
         super.init(nibName: nil, bundle: nil)
+        
+        self.openSideMenuButton.addTarget(self, action: #selector(self.openSideMenuButtonClicked(sender:)), for: .touchUpInside)
         for thoughtButton in self.thoughtButtons {
             thoughtButton.addTarget(self, action: #selector(self.thoughtButtonClicked(sender:)), for: .touchUpInside)
         }
@@ -66,7 +71,26 @@ class BotViewController: UIViewController {
         self.view.backgroundColor = UIColor.init(red: 84/255.0, green: 131/255.0, blue: 174/255.0, alpha: 1)
         layoutTrackerBotButton()
         layoutThoughtButtons()
+        layoutChangeProjectButton()
+        layoutSideMenu()
         // Do any additional setup after loading the view.
+    }
+    
+    func layoutSideMenu() {
+        let menuLeftNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
+        SideMenuManager.menuLeftNavigationController = menuLeftNavigationController
+        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
+    }
+    
+    func layoutChangeProjectButton() {
+        self.view.addSubview(openSideMenuButton)
+        openSideMenuButton.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(32)
+            make.height.equalTo(32)
+            make.left.equalTo(20)
+            make.top.equalTo(20)
+        }
+        openSideMenuButton.backgroundColor = UIColor.red
     }
     
     func layoutTrackerBotButton() {
@@ -97,6 +121,10 @@ class BotViewController: UIViewController {
             make.left.equalTo(20)
             make.bottom.equalTo(self.view).offset(-50)
         }
+    }
+    
+    func openSideMenuButtonClicked(sender: UIButton) {
+        present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
     func thoughtButtonClicked(sender: UIButton){

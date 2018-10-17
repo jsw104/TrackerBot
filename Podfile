@@ -9,6 +9,7 @@ target 'TrackerBot' do
 	pod 'WYMaterialButton'
 	pod 'SnapKit', '~> 3.0.0'
     pod 'DeckTransition', '~>1.3.4'
+    pod 'SideMenu', '~> 2.3.4'
 
   target 'TrackerBotTests' do
     inherit! :search_paths
