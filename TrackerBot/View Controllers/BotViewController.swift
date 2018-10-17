@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import DeckTransition
 import SideMenu
+import CoreData
 
 class Position: NSObject {
     var x: Float
@@ -35,13 +36,15 @@ class BotViewController: UIViewController {
     let thoughtBubbleButtonSize: Size = Size(width: 100, height: 100)
     let trackerBotButtonSize: Size = Size(width: 225/3.0, height: 215/3.0)
     let user:User
-    let project:Project
+    var project:Project
     let trackerBotButton: TrackerBotButton
     var trackerBotService: TrackerBotService!
     let thoughtButtons: [ThoughtBubbleButton]
     let yesterdayWorkButton: ThoughtBubbleButton
     let todayWorkButton: ThoughtBubbleButton
     let flashUpdateButton: ThoughtBubbleButton
+    let headerContainerView: UIView
+    let projectTitleLabel: UILabel
     let openSideMenuButton: UIButton
     
     init (user: User, project: Project) {
@@ -53,6 +56,8 @@ class BotViewController: UIViewController {
         self.flashUpdateButton = ThoughtBubbleButton(bubbleType: ThoughtBubbleButton.BubbleType.FlashUpdate)
         self.thoughtButtons = [yesterdayWorkButton, todayWorkButton, flashUpdateButton]
         self.openSideMenuButton = UIButton()
+        self.headerContainerView = UIView()
+        self.projectTitleLabel = UILabel()
         super.init(nibName: nil, bundle: nil)
         
         self.openSideMenuButton.addTarget(self, action: #selector(self.openSideMenuButtonClicked(sender:)), for: .touchUpInside)
@@ -68,29 +73,64 @@ class BotViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         trackerBotService = TrackerBotServiceHandler(user: user, project: project, delegate: self)
-        self.view.backgroundColor = UIColor.init(red: 84/255.0, green: 131/255.0, blue: 174/255.0, alpha: 1)
+        self.view.backgroundColor = UIColor.black
         layoutTrackerBotButton()
         layoutThoughtButtons()
-        layoutChangeProjectButton()
+        layoutHeader()
         layoutSideMenu()
         // Do any additional setup after loading the view.
     }
     
-    func layoutSideMenu() {
-        let menuLeftNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LeftMenuNavigationController") as! UISideMenuNavigationController
-        SideMenuManager.menuLeftNavigationController = menuLeftNavigationController
-        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
-    }
-    
-    func layoutChangeProjectButton() {
-        self.view.addSubview(openSideMenuButton)
+    func layoutHeader() {
+        self.view.addSubview(headerContainerView)
+        headerContainerView.snp.makeConstraints { (make) in
+            make.top.equalTo(headerContainerView.superview!.snp.top).offset(20)
+            make.width.equalTo(headerContainerView.superview!.snp.width)
+            make.height.equalTo(64)
+        }
+        self.headerContainerView.backgroundColor = UIColor.black
+        self.headerContainerView.addSubview(openSideMenuButton)
         openSideMenuButton.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(32)
             make.height.equalTo(32)
             make.left.equalTo(20)
             make.top.equalTo(20)
         }
+        self.headerContainerView.addSubview(projectTitleLabel)
+        projectTitleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(projectTitleLabel.superview!.snp.centerX)
+            make.centerY.equalTo(openSideMenuButton.snp.centerY)
+            make.left.equalTo(openSideMenuButton.snp.right)
+        }
+        projectTitleLabel.text = self.project.projectName
+        projectTitleLabel.textAlignment = NSTextAlignment.center
+        projectTitleLabel.textColor = UIColor.white
         openSideMenuButton.backgroundColor = UIColor.red
+    }
+    
+    func getUserProjectsFromCoreData(completionBlock: ([Project]) -> Void) -> Void {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        request.predicate = NSPredicate(format: "id = %d", user.id)
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for user in result {
+                completionBlock(Array((user as! User).projects!) as! [Project])
+                return
+            }
+        } catch {
+        }
+    }
+    
+    func layoutSideMenu() {
+        getUserProjectsFromCoreData { (projects) in
+            let sideMenuController = SideMenuTableViewController(currentProject: self.project, projects: projects, delegate: self)
+            let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: sideMenuController)
+            SideMenuManager.menuLeftNavigationController = menuLeftNavigationController
+            SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.view)
+        }
     }
     
     func layoutTrackerBotButton() {
@@ -137,6 +177,15 @@ class BotViewController: UIViewController {
         case ThoughtBubbleButton.BubbleType.TodayWork:
             self.trackerBotService.getAllStoriesInProgress(project: project, user: user)
         }
+    }
+}
+
+extension BotViewController: ProjectSelectionServiceDelegate {
+    func selectedProject(project: Project) {
+        self.project = project
+        UserDefaults.standard.set(project.id, forKey: "currentProjectId")
+        self.projectTitleLabel.text = self.project.projectName
+        dismiss(animated: true, completion: nil)
     }
 }
 
