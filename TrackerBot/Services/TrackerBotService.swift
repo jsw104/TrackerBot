@@ -19,6 +19,7 @@ protocol TrackerBotService {
 protocol TrackerBotServiceDelegate {
     func retrieveYesterdayWorkSuccessful(stories: [Story])
     func retrieveInProgressWorkSuccessful(stories: [Story])
+    func retrieveFlashUpdateSuccessful(stories: [Story])
     func handle(error: String)
 }
 
@@ -74,7 +75,7 @@ class TrackerBotServiceHandler: TrackerBotService {
                     parameters.append(story.key + "%2C")
                 }
                 parameters.append("2%2C0")
-                self.getStoriesWithParams(params: parameters, project: project, user: user,subpath: "/stories/bulk?")
+                self.getStoriesWithParams(params: parameters, project: project, user: user,subpath: "/stories/bulk?", callback: { stories in self.delegate.retrieveFlashUpdateSuccessful(stories: stories)})
             }
         }
         
@@ -87,15 +88,15 @@ class TrackerBotServiceHandler: TrackerBotService {
     func getAllStoriesFromYesterday(project: Project, user: User) {
         let stringFromDate = Date().addingTimeInterval(TimeInterval(-86400)).iso8601
         let parameters: String = "updated_after=" + stringFromDate
-        getStoriesWithParams(params: parameters, project: project, user: user, subpath: "/stories?")
+        getStoriesWithParams(params: parameters, project: project, user: user, subpath: "/stories?", callback: { stories in self.delegate.retrieveYesterdayWorkSuccessful(stories: stories)})
     }
     
     func getAllStoriesInProgress(project: Project, user: User) {
         let parameters: String = "with_state=" + "started"
-        getStoriesWithParams(params: parameters, project: project, user: user, subpath: "/stories?")
+        getStoriesWithParams(params: parameters, project: project, user: user, subpath: "/stories?", callback: { stories in self.delegate.retrieveInProgressWorkSuccessful(stories: stories) })
     }
     
-    func getStoriesWithParams(params: String, project: Project, user: User, subpath: String) -> Void {
+    func getStoriesWithParams(params: String, project: Project, user: User, subpath: String, callback: @escaping ([Story]) -> ()) -> Void {
         let path: String = "v5/projects/"
         let host: String = "www.pivotaltracker.com"
         let urlString: String = "https://" + host + "/services/" + path + String(project.value(forKey: "id") as! Int) + subpath + params
@@ -129,9 +130,9 @@ class TrackerBotServiceHandler: TrackerBotService {
                             labels.append(label["name"] as! String)
                         }
                     }
-                    stories.append(Story(estimate: story["estimate"] as? Int, name: story["name"] as! String, id: story["id"] as! Int, storyType: story["story_type"] as! String, labels: labels, ownerIds: story["owner_ids"] as? [Int]))
+                    stories.append(Story(estimate: story["estimate"] as? Int, name: story["name"] as! String, id: story["id"] as! Int, storyType: story["story_type"] as! String, labels: labels, ownerIds: story["owner_ids"] as? [Int], currentState: story["current_state"] as! String))
                 }
-                self.delegate.retrieveYesterdayWorkSuccessful(stories: stories)
+                callback(stories)
             }
         }
         

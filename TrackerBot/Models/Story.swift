@@ -15,13 +15,15 @@ class Story: NSObject {
     let storyType: String
     let labels: [String]
     let ownerIds: [Int]?
+    let currentState: String
 
-    init(estimate: Int?, name: String, id: Int, storyType: String, labels: [String], ownerIds:[Int]?) {
+    init(estimate: Int?, name: String, id: Int, storyType: String, labels: [String], ownerIds:[Int]?, currentState: String) {
         self.estimate = estimate
         self.name = name
         self.id = id
         self.storyType = storyType
         self.labels = labels
         self.ownerIds = ownerIds
+        self.currentState = currentState
     }
 }

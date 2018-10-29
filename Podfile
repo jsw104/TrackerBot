@@ -10,6 +10,8 @@ target 'TrackerBot' do
 	pod 'SnapKit', '~> 3.0.0'
     pod 'DeckTransition', '~>1.3.4'
     pod 'SideMenu', '~> 2.3.4'
+    pod 'SwiftGifOrigin', '~> 1.6.1'
+    pod 'JRMFloatingAnimation'
 
   target 'TrackerBotTests' do
     inherit! :search_paths

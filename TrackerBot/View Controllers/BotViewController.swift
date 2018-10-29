@@ -11,6 +11,8 @@ import SnapKit
 import DeckTransition
 import SideMenu
 import CoreData
+import SwiftGifOrigin
+import JRMFloatingAnimation
 
 class Position: NSObject {
     var x: Float
@@ -34,7 +36,7 @@ class Size: NSObject {
 
 class BotViewController: UIViewController {
     let thoughtBubbleButtonSize: Size = Size(width: 100, height: 100)
-    let trackerBotButtonSize: Size = Size(width: 225/3.0, height: 215/3.0)
+    let trackerBotButtonSize: Size = Size(width: 150, height: 150)
     let user:User
     var project:Project
     let trackerBotButton: TrackerBotButton
@@ -46,6 +48,9 @@ class BotViewController: UIViewController {
     let headerContainerView: UIView
     let projectTitleLabel: UILabel
     let openSideMenuButton: UIButton
+    let headerSeperatorView: UIView
+    var floatingView: JRMFloatingAnimationView?
+    var spinning = false
     
     init (user: User, project: Project) {
         self.user = user
@@ -58,9 +63,10 @@ class BotViewController: UIViewController {
         self.openSideMenuButton = UIButton()
         self.headerContainerView = UIView()
         self.projectTitleLabel = UILabel()
+        self.headerSeperatorView = UIView()
         super.init(nibName: nil, bundle: nil)
-        
         self.openSideMenuButton.addTarget(self, action: #selector(self.openSideMenuButtonClicked(sender:)), for: .touchUpInside)
+        self.trackerBotButton.addTarget(self, action: #selector(self.trackerBotButtonClicked(sender:)), for: .touchUpInside)
         for thoughtButton in self.thoughtButtons {
             thoughtButton.addTarget(self, action: #selector(self.thoughtButtonClicked(sender:)), for: .touchUpInside)
         }
@@ -72,11 +78,22 @@ class BotViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.floatingView = JRMFloatingAnimationView.init(starting: self.view.center)
+        self.floatingView?.add(UIImage.init(named: "Bug"))
+        self.floatingView?.add(UIImage.init(named: "Chore"))
+        self.floatingView?.add(UIImage.init(named: "Feature"))
+        self.floatingView?.maxFloatObjectSize = 30
+        self.floatingView?.fadeOut = true
+        self.floatingView?.animationWidth = 200
+        self.view.addSubview(self.floatingView!)
+        self.activateSpinner()
+        self.deactivateSpinner()
+        self.floatingView?.animate()
         trackerBotService = TrackerBotServiceHandler(user: user, project: project, delegate: self)
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor.white
         layoutTrackerBotButton()
-        layoutThoughtButtons()
         layoutHeader()
+        layoutThoughtButtons()
         layoutSideMenu()
         // Do any additional setup after loading the view.
     }
@@ -93,19 +110,28 @@ class BotViewController: UIViewController {
         openSideMenuButton.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(32)
             make.height.equalTo(32)
-            make.left.equalTo(20)
+            make.left.equalTo(8)
             make.top.equalTo(20)
         }
+        openSideMenuButton.setBackgroundImage(UIImage.init(named: "OpenSideMenu"), for: UIControlState.normal)
+        openSideMenuButton.setBackgroundImage(UIImage.init(named: "OpenSideMenuSelected"), for: UIControlState.selected)
         self.headerContainerView.addSubview(projectTitleLabel)
         projectTitleLabel.snp.makeConstraints { (make) in
             make.centerX.equalTo(projectTitleLabel.superview!.snp.centerX)
             make.centerY.equalTo(openSideMenuButton.snp.centerY)
-            make.left.equalTo(openSideMenuButton.snp.right)
+            make.left.equalTo(openSideMenuButton.snp.right).offset(8)
         }
         projectTitleLabel.text = self.project.projectName
         projectTitleLabel.textAlignment = NSTextAlignment.center
         projectTitleLabel.textColor = UIColor.white
-        openSideMenuButton.backgroundColor = UIColor.red
+        self.headerContainerView.addSubview(self.headerSeperatorView)
+        self.headerSeperatorView.snp.makeConstraints { (make) in
+            make.bottom.equalTo(headerSeperatorView.superview!.snp.bottom)
+            make.height.equalTo(1)
+            make.width.equalTo(headerSeperatorView.superview!.snp.width)
+            make.centerX.equalTo(headerSeperatorView.superview!.snp.centerX)
+        }
+        self.headerSeperatorView.backgroundColor = UIColor.white
     }
     
     func getUserProjectsFromCoreData(completionBlock: ([Project]) -> Void) -> Void {
@@ -146,21 +172,29 @@ class BotViewController: UIViewController {
         self.view.addSubview(yesterdayWorkButton)
         yesterdayWorkButton.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(20)
+            make.height.equalTo(100)
+            make.width.equalTo(150)
             make.bottom.lessThanOrEqualTo(trackerBotButton.snp.top).offset(-15)
         }
         self.view.addSubview(todayWorkButton)
         todayWorkButton.snp.makeConstraints { (make) -> Void in
             make.right.equalTo(-20)
             make.height.equalTo(yesterdayWorkButton.snp.height)
-            make.bottom.equalTo(yesterdayWorkButton.snp.top)
-            make.top.equalTo(self.view).offset(44)
+            make.width.equalTo(150)
+            make.top.equalTo(self.headerContainerView.snp.bottom).offset(20)
         }
         self.view.addSubview(flashUpdateButton)
         flashUpdateButton.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(yesterdayWorkButton.snp.height)
+            make.width.equalTo(150)
             make.left.equalTo(20)
             make.bottom.equalTo(self.view).offset(-50)
         }
+    }
+    
+    func trackerBotButtonClicked(sender: UIButton!) {
+        self.activateSpinner()
+        self.deactivateSpinner()
     }
     
     func openSideMenuButtonClicked(sender: UIButton) {
@@ -168,6 +202,7 @@ class BotViewController: UIViewController {
     }
     
     func thoughtButtonClicked(sender: UIButton){
+        self.activateSpinner()
         let bubbleType : ThoughtBubbleButton.BubbleType = (sender as! ThoughtBubbleButton).bubbleType
         switch bubbleType {
         case ThoughtBubbleButton.BubbleType.FlashUpdate:
@@ -177,6 +212,16 @@ class BotViewController: UIViewController {
         case ThoughtBubbleButton.BubbleType.TodayWork:
             self.trackerBotService.getAllStoriesInProgress(project: project, user: user)
         }
+    }
+    
+    func activateSpinner() {
+        for _ in 0..<10 {
+            self.floatingView?.animate()
+        }
+    }
+    
+    func deactivateSpinner() {
+        
     }
 }
 
@@ -190,31 +235,103 @@ extension BotViewController: ProjectSelectionServiceDelegate {
 }
 
 extension BotViewController: TrackerBotServiceDelegate {
-    func retrieveInProgressWorkSuccessful(stories: [Story]) {
+    
+    func sortStoriesByLabel(stories: [Story]) -> Dictionary<String, [Story]> {
+        var labelStoryMap : Dictionary<String, [Story]> = Dictionary()
         for story in stories {
-            print(story.name)
+            for label in story.labels {
+                if(labelStoryMap[label] == nil) {
+                    labelStoryMap[label] = [story]
+                } else {
+                    labelStoryMap[label]?.append(story)
+                }
+            }
         }
+        return labelStoryMap
+    }
+    
+    func sortOutUnstartedStories(stories: [Story]) -> [Story] {
+        var filteredStories : [Story] = []
+        for story in stories {
+            if(story.currentState != "unscheduled" && story.currentState != "unstarted") {
+                filteredStories.append(story)
+            }
+        }
+        return filteredStories
+    }
+    
+    func sortStoriesByOwner(stories:[Story]) -> Dictionary<String, [Story]> {
+        var ownerStoryMap : Dictionary<String, [Story]> = Dictionary()
+        ownerStoryMap["My Stories"] = []
+        ownerStoryMap["Other Stories"] = []
+        var storyAdded : Bool = false
+        for story in stories {
+            if (story.ownerIds == nil) {
+                continue
+            }
+            for ownerId in story.ownerIds! {
+                if(self.user.id == ownerId) {
+                    ownerStoryMap["My Stories"]?.append(story)
+                    storyAdded = true
+                    continue
+                }
+            }
+            if (storyAdded == false) {
+                ownerStoryMap["Other Stories"]?.append(story)
+            }
+            storyAdded = false
+        }
+        return ownerStoryMap
+    }
+    
+    /*
+    func displayStories(stories: [Story]) {
         let modal = StoriesTableViewController(stories: stories)
         let transitionDelegate = DeckTransitioningDelegate()
         modal.transitioningDelegate = transitionDelegate
         modal.modalPresentationStyle = .custom
         present(modal, animated: true, completion: nil)
+    }
+ */
+    
+    func displaySectionedStories(stories: Dictionary<String, [Story]>) {
+        let modal = SectionedStoriesTableViewController(stories: stories)
+        let transitionDelegate = DeckTransitioningDelegate()
+        modal.transitioningDelegate = transitionDelegate
+        modal.modalPresentationStyle = .custom
+        self.present(modal, animated: true, completion: nil)
+
+    }
+    
+    func retrieveInProgressWorkSuccessful(stories: [Story]) {
+        displaySectionedStories(stories: sortStoriesByOwner(stories: stories))
+        self.deactivateSpinner()
     }
     
     func retrieveYesterdayWorkSuccessful(stories: [Story]) {
-        for story in stories {
-            print(story.name)
-        }
-        let modal = StoriesTableViewController(stories: stories)
-        let transitionDelegate = DeckTransitioningDelegate()
-        modal.transitioningDelegate = transitionDelegate
-        modal.modalPresentationStyle = .custom
-        present(modal, animated: true, completion: nil)
+        let filteredStories = sortOutUnstartedStories(stories: stories)
+        displaySectionedStories(stories: sortStoriesByOwner(stories: filteredStories))
+        self.deactivateSpinner()
+    }
+    
+    func retrieveFlashUpdateSuccessful(stories: [Story]) {
+        displaySectionedStories(stories: sortStoriesByLabel(stories: stories))
+        self.deactivateSpinner()
     }
     
     func handle(error: String) {
+        self.deactivateSpinner()
         let alert = UIAlertController(title: "Authentication Error.", message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
+    }
+}
+
+extension UIImage {
+    public class func gif(asset: String) -> UIImage? {
+        if let asset = NSDataAsset(name: asset) {
+            return UIImage.gif(data: asset.data)
+        }
+        return nil
     }
 }

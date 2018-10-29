@@ -19,6 +19,7 @@
 		D038E8A621779B8300CA1360 /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D038E8A421779B8300CA1360 /* ProjectTableViewCell.xib */; };
 		D04C5D4F2170F81C00446DA7 /* TrackerBotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C5D4E2170F81B00446DA7 /* TrackerBotService.swift */; };
 		D04C5D512170F89B00446DA7 /* ThoughtBubbleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C5D502170F89B00446DA7 /* ThoughtBubbleButton.swift */; };
+		D05866132179417A009E1210 /* SectionedStoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05866122179417A009E1210 /* SectionedStoriesTableViewController.swift */; };
 		D09260CA215C4A5E00F2C136 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09260C9215C4A5E00F2C136 /* AppDelegate.swift */; };
 		D09260CC215C4A5E00F2C136 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09260CB215C4A5E00F2C136 /* LoginViewController.swift */; };
 		D09260CF215C4A5E00F2C136 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09260CD215C4A5E00F2C136 /* Main.storyboard */; };
@@ -79,6 +80,7 @@
 		D038E8A421779B8300CA1360 /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
 		D04C5D4E2170F81B00446DA7 /* TrackerBotService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerBotService.swift; sourceTree = "<group>"; };
 		D04C5D502170F89B00446DA7 /* ThoughtBubbleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtBubbleButton.swift; sourceTree = "<group>"; };
+		D05866122179417A009E1210 /* SectionedStoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionedStoriesTableViewController.swift; sourceTree = "<group>"; };
 		D09260C6215C4A5E00F2C136 /* TrackerBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackerBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D09260C9215C4A5E00F2C136 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D09260CB215C4A5E00F2C136 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -223,9 +225,10 @@
 			children = (
 				D09260CB215C4A5E00F2C136 /* LoginViewController.swift */,
 				D0BFD33A216FFC1900FB331B /* BotViewController.swift */,
-				D0013BB7217502990042881B /* StoriesTableViewController.swift */,
 				D0013BBE21753A080042881B /* PasswordViewController.swift */,
 				D038E89C21779B1B00CA1360 /* SideMenuTableViewController.swift */,
+				D0013BB7217502990042881B /* StoriesTableViewController.swift */,
+				D05866122179417A009E1210 /* SectionedStoriesTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				D0013BB8217502990042881B /* StoriesTableViewController.swift in Sources */,
 				D0013BBC21750C300042881B /* StoryTableViewCell.swift in Sources */,
 				D0BFD33B216FFC1900FB331B /* BotViewController.swift in Sources */,
+				D05866132179417A009E1210 /* SectionedStoriesTableViewController.swift in Sources */,
 				D0013BBF21753A080042881B /* PasswordViewController.swift in Sources */,
 				D04C5D4F2170F81C00446DA7 /* TrackerBotService.swift in Sources */,
 				D0A323AD216E5A2100DC049E /* TrackerBotButton.swift in Sources */,

@@ -24,7 +24,20 @@ class StoryTableViewCell: UITableViewCell {
         if story.labels != nil {
             labelsLabel.text = story.labels.joined(separator: ", ")
         }
-        estimateLabel.text = (story.estimate != nil) ? String(story.estimate!) : "unestimated"
+        estimateLabel.text = (story.estimate != nil) ? String(story.estimate!) : ""
+        
+        switch story.storyType {
+        case "bug":
+            storyTypeImageView.image = UIImage.init(named: "Bug")
+        case "feature":
+            storyTypeImageView.image = UIImage.init(named: "Feature")
+        case "chore":
+            storyTypeImageView.image = UIImage.init(named: "Chore")
+        case "release":
+            storyTypeImageView.image = UIImage.init(named: "Release")
+        default:
+            storyTypeImageView.image = UIImage.init(named: "Feature")
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

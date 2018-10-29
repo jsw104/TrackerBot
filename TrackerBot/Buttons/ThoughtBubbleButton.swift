@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import SwiftGifOrigin
 
 class ThoughtBubbleButton: UIButton {
     enum BubbleType {
@@ -17,9 +18,9 @@ class ThoughtBubbleButton: UIButton {
     }
     
     var bubbleMessage: Dictionary<BubbleType, String> = [
-        BubbleType.FlashUpdate: "What got released yesterday?",
-        BubbleType.YesterdayWork: "What did I do yesterday?",
-        BubbleType.TodayWork: "What are my open tracks?"
+        BubbleType.FlashUpdate: "What did my project put in the latest release?",
+        BubbleType.YesterdayWork: "What did my project do yesterday?",
+        BubbleType.TodayWork: "What are my project's open tracks?"
     ]
     
     let messageLabel: UILabel
@@ -29,7 +30,7 @@ class ThoughtBubbleButton: UIButton {
         self.bubbleType = bubbleType
         self.messageLabel = UILabel()
         super.init(frame: .zero)
-        self.setBackgroundImage(UIImage(named: "LargeThoughtBubble"), for: UIControlState.normal)
+        self.setBackgroundImage(UIImage.gif(asset: "LargeThoughtBubbleGif"), for: UIControlState.normal)
         self.messageLabel.text = self.bubbleMessage[self.bubbleType]
         self.messageLabel.lineBreakMode = .byWordWrapping
         self.messageLabel.numberOfLines = 3
